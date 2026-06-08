@@ -1,0 +1,731 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Natesan Rajesh</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link href="https://fonts.googleapis.com/css2?family=Instrument+Serif:ital@0;1&family=DM+Mono:wght@300;400;500&family=Syne:wght@400;500;600;700;800&display=swap" rel="stylesheet">
+<style>
+  *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+
+  :root {
+    --bg: #0a0a08;
+    --bg2: #111110;
+    --bg3: #1a1a17;
+    --border: rgba(255,255,255,0.08);
+    --border2: rgba(255,255,255,0.14);
+    --text: #f0ede6;
+    --text2: #a09c92;
+    --text3: #5c5a54;
+    --gold: #c8a96e;
+    --gold2: #e8c98e;
+    --teal: #4ecdc4;
+    --accent: #c8a96e;
+  }
+
+  html { scroll-behavior: smooth; }
+
+  body {
+    background: var(--bg);
+    color: var(--text);
+    font-family: 'DM Mono', monospace;
+    font-size: 14px;
+    line-height: 1.6;
+    overflow-x: hidden;
+  }
+
+  /* NAV */
+  nav {
+    position: fixed; top: 0; left: 0; right: 0; z-index: 100;
+    display: flex; align-items: center; justify-content: space-between;
+    padding: 1.25rem 3rem;
+    background: rgba(10,10,8,0.85);
+    backdrop-filter: blur(12px);
+    border-bottom: 0.5px solid var(--border);
+  }
+  .nav-logo {
+    font-family: 'Syne', sans-serif;
+    font-weight: 800; font-size: 18px; letter-spacing: -0.02em;
+    color: var(--text); text-decoration: none;
+  }
+  .nav-logo span { color: var(--gold); }
+  .nav-links { display: flex; gap: 2rem; list-style: none; }
+  .nav-links a {
+    color: var(--text2); text-decoration: none; font-size: 12px;
+    letter-spacing: 0.08em; text-transform: uppercase;
+    transition: color 0.2s;
+  }
+  .nav-links a:hover { color: var(--gold); }
+
+  /* HERO */
+  .hero {
+    min-height: 100vh; display: flex; align-items: center;
+    padding: 8rem 3rem 4rem;
+    position: relative; overflow: hidden;
+  }
+  .hero-grid {
+    position: absolute; inset: 0;
+    background-image:
+      linear-gradient(rgba(200,169,110,0.04) 1px, transparent 1px),
+      linear-gradient(90deg, rgba(200,169,110,0.04) 1px, transparent 1px);
+    background-size: 60px 60px;
+  }
+  .hero-glow {
+    position: absolute; top: 20%; right: 10%;
+    width: 500px; height: 500px; border-radius: 50%;
+    background: radial-gradient(circle, rgba(200,169,110,0.06) 0%, transparent 70%);
+    pointer-events: none;
+  }
+  .hero-content { position: relative; max-width: 800px; }
+  .hero-tag {
+    display: inline-flex; align-items: center; gap: 8px;
+    font-size: 11px; letter-spacing: 0.12em; text-transform: uppercase;
+    color: var(--gold); margin-bottom: 2rem;
+    padding: 6px 14px; border: 0.5px solid rgba(200,169,110,0.3);
+    border-radius: 2px;
+  }
+  .hero-tag::before { content: ''; width: 6px; height: 6px; border-radius: 50%; background: var(--gold); display: inline-block; }
+  h1 {
+    font-family: 'Instrument Serif', serif;
+    font-size: clamp(3.5rem, 8vw, 7rem);
+    line-height: 1.0;
+    letter-spacing: -0.03em;
+    color: var(--text);
+    margin-bottom: 0.5rem;
+  }
+  h1 em { font-style: italic; color: var(--gold); }
+  .hero-sub {
+    font-family: 'Syne', sans-serif; font-weight: 400;
+    font-size: clamp(1rem, 2.5vw, 1.4rem);
+    color: var(--text2); margin: 1.5rem 0 2.5rem;
+    letter-spacing: 0.01em; max-width: 500px;
+  }
+  .hero-cta { display: flex; gap: 1rem; flex-wrap: wrap; }
+  .btn {
+    display: inline-block; padding: 12px 28px;
+    font-family: 'DM Mono', monospace; font-size: 12px;
+    letter-spacing: 0.08em; text-transform: uppercase;
+    text-decoration: none; border-radius: 2px;
+    transition: all 0.2s; cursor: pointer; border: none;
+  }
+  .btn-primary {
+    background: var(--gold); color: #0a0a08;
+    font-weight: 500;
+  }
+  .btn-primary:hover { background: var(--gold2); transform: translateY(-1px); }
+  .btn-outline {
+    background: transparent; color: var(--text);
+    border: 0.5px solid var(--border2);
+  }
+  .btn-outline:hover { border-color: var(--gold); color: var(--gold); }
+
+  .hero-stats {
+    display: flex; gap: 3rem; margin-top: 5rem;
+    padding-top: 3rem; border-top: 0.5px solid var(--border);
+  }
+  .stat-val {
+    font-family: 'Syne', sans-serif; font-size: 2rem; font-weight: 700;
+    color: var(--text); line-height: 1;
+  }
+  .stat-val span { color: var(--gold); }
+  .stat-label { font-size: 11px; letter-spacing: 0.08em; text-transform: uppercase; color: var(--text3); margin-top: 4px; }
+
+  /* SECTIONS */
+  section { padding: 6rem 3rem; }
+  .section-label {
+    font-size: 11px; letter-spacing: 0.15em; text-transform: uppercase;
+    color: var(--gold); margin-bottom: 3rem;
+    display: flex; align-items: center; gap: 1rem;
+  }
+  .section-label::after { content: ''; flex: 1; max-width: 60px; height: 0.5px; background: var(--gold); opacity: 0.4; }
+  .section-title {
+    font-family: 'Instrument Serif', serif;
+    font-size: clamp(2rem, 4vw, 3rem);
+    line-height: 1.1; letter-spacing: -0.02em;
+    margin-bottom: 4rem; color: var(--text);
+  }
+
+  /* ABOUT */
+  .about-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 4rem; align-items: start; }
+  .about-text p { color: var(--text2); line-height: 1.9; margin-bottom: 1.2rem; font-size: 14px; }
+  .about-text p strong { color: var(--text); font-weight: 500; }
+  .skills-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 1rem; }
+  .skill-card {
+    padding: 1.25rem;
+    background: var(--bg2); border: 0.5px solid var(--border);
+    border-radius: 4px;
+    transition: border-color 0.2s;
+  }
+  .skill-card:hover { border-color: rgba(200,169,110,0.3); }
+  .skill-category { font-size: 10px; letter-spacing: 0.12em; text-transform: uppercase; color: var(--gold); margin-bottom: 0.75rem; }
+  .skill-list { font-size: 12px; color: var(--text2); line-height: 1.8; }
+
+  /* EXPERIENCE */
+  .exp-list { display: flex; flex-direction: column; gap: 0; }
+  .exp-item {
+    display: grid; grid-template-columns: 200px 1fr;
+    gap: 3rem; padding: 2.5rem 0;
+    border-bottom: 0.5px solid var(--border);
+    position: relative;
+  }
+  .exp-item::before {
+    content: ''; position: absolute; left: 200px; top: 0; bottom: 0;
+    width: 0.5px; background: var(--border);
+  }
+  .exp-meta { padding-right: 2rem; }
+  .exp-period { font-size: 11px; letter-spacing: 0.08em; color: var(--text3); margin-bottom: 0.5rem; }
+  .exp-company { font-family: 'Syne', sans-serif; font-weight: 600; font-size: 14px; color: var(--gold); }
+  .exp-loc { font-size: 11px; color: var(--text3); margin-top: 4px; }
+  .exp-role { font-family: 'Syne', sans-serif; font-size: 18px; font-weight: 600; margin-bottom: 1rem; color: var(--text); }
+  .exp-bullets { list-style: none; }
+  .exp-bullets li {
+    position: relative; padding-left: 1.25rem;
+    font-size: 13px; color: var(--text2); line-height: 1.8;
+    margin-bottom: 0.5rem;
+  }
+  .exp-bullets li::before { content: '—'; position: absolute; left: 0; color: var(--gold); opacity: 0.6; }
+  .exp-bullets li strong { color: var(--text); font-weight: 500; }
+  .exp-tags { display: flex; flex-wrap: wrap; gap: 6px; margin-top: 1.25rem; }
+  .tag {
+    font-size: 10px; letter-spacing: 0.06em; text-transform: uppercase;
+    padding: 4px 10px; border: 0.5px solid var(--border2);
+    border-radius: 2px; color: var(--text3);
+  }
+
+  /* PROJECTS */
+  .projects-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(340px, 1fr)); gap: 1.5rem; }
+  .project-card {
+    background: var(--bg2); border: 0.5px solid var(--border);
+    border-radius: 6px; padding: 2rem; position: relative;
+    overflow: hidden; transition: border-color 0.2s, transform 0.2s;
+  }
+  .project-card:hover { border-color: rgba(200,169,110,0.4); transform: translateY(-2px); }
+  .project-card::before {
+    content: ''; position: absolute; top: 0; left: 0; right: 0;
+    height: 1px; background: linear-gradient(90deg, transparent, var(--gold), transparent);
+    opacity: 0;
+    transition: opacity 0.3s;
+  }
+  .project-card:hover::before { opacity: 0.5; }
+  .project-num { font-size: 10px; letter-spacing: 0.12em; color: var(--text3); margin-bottom: 1rem; }
+  .project-title { font-family: 'Syne', sans-serif; font-weight: 700; font-size: 18px; margin-bottom: 0.75rem; color: var(--text); }
+  .project-desc { font-size: 13px; color: var(--text2); line-height: 1.8; margin-bottom: 1.5rem; }
+  .project-metrics {
+    display: flex; gap: 1.5rem; padding: 1rem 0;
+    border-top: 0.5px solid var(--border); border-bottom: 0.5px solid var(--border);
+    margin-bottom: 1.25rem;
+  }
+  .metric-val { font-family: 'Syne', sans-serif; font-size: 1.1rem; font-weight: 700; color: var(--gold); }
+  .metric-label { font-size: 10px; letter-spacing: 0.06em; color: var(--text3); margin-top: 2px; text-transform: uppercase; }
+  .project-stack { display: flex; flex-wrap: wrap; gap: 6px; }
+  .stack-pill {
+    font-size: 10px; letter-spacing: 0.05em;
+    padding: 3px 9px; background: var(--bg3);
+    border: 0.5px solid var(--border); border-radius: 2px; color: var(--text3);
+  }
+
+  /* AWARDS */
+  .awards-row { display: flex; flex-wrap: wrap; gap: 1rem; }
+  .award-card {
+    display: flex; align-items: center; gap: 1rem;
+    padding: 1.25rem 1.75rem;
+    background: var(--bg2); border: 0.5px solid var(--border);
+    border-radius: 4px; flex: 1; min-width: 260px;
+    transition: border-color 0.2s;
+  }
+  .award-card:hover { border-color: rgba(200,169,110,0.35); }
+  .award-icon { font-size: 1.5rem; opacity: 0.9; }
+  .award-name { font-family: 'Syne', sans-serif; font-weight: 600; font-size: 14px; color: var(--text); }
+  .award-org { font-size: 11px; color: var(--text3); margin-top: 2px; }
+
+  /* EDUCATION */
+  .edu-card {
+    background: var(--bg2); border: 0.5px solid var(--border);
+    border-radius: 6px; padding: 2.5rem;
+    display: grid; grid-template-columns: 1fr auto; gap: 2rem; align-items: start;
+  }
+  .edu-school { font-family: 'Syne', sans-serif; font-weight: 700; font-size: 1.4rem; color: var(--text); margin-bottom: 0.25rem; }
+  .edu-degree { font-size: 13px; color: var(--text2); margin-bottom: 1.5rem; }
+  .coursework { display: flex; flex-wrap: wrap; gap: 6px; }
+  .course-tag {
+    font-size: 11px; padding: 4px 11px;
+    background: var(--bg3); border: 0.5px solid var(--border);
+    border-radius: 2px; color: var(--text2); letter-spacing: 0.02em;
+  }
+  .edu-gpa {
+    text-align: right;
+    font-family: 'Instrument Serif', serif;
+    font-size: 3.5rem; line-height: 1; color: var(--gold);
+  }
+  .edu-gpa-label { font-size: 11px; letter-spacing: 0.08em; text-transform: uppercase; color: var(--text3); margin-top: 4px; }
+
+  /* CONTACT */
+  .contact-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 4rem; align-items: center; }
+  .contact-text p { color: var(--text2); line-height: 1.9; margin-bottom: 1.5rem; font-size: 14px; }
+  .contact-links { display: flex; flex-direction: column; gap: 1rem; }
+  .contact-link {
+    display: flex; align-items: center; gap: 1rem;
+    padding: 1.25rem 1.5rem;
+    background: var(--bg2); border: 0.5px solid var(--border);
+    border-radius: 4px; text-decoration: none; color: var(--text);
+    transition: border-color 0.2s, transform 0.2s;
+    font-family: 'DM Mono', monospace; font-size: 13px;
+  }
+  .contact-link:hover { border-color: rgba(200,169,110,0.4); transform: translateX(4px); color: var(--gold); }
+  .contact-link-label { font-size: 10px; letter-spacing: 0.1em; text-transform: uppercase; color: var(--text3); }
+  .contact-link-val { margin-top: 2px; }
+
+  /* FOOTER */
+  footer {
+    border-top: 0.5px solid var(--border);
+    padding: 2rem 3rem; display: flex;
+    justify-content: space-between; align-items: center;
+    color: var(--text3); font-size: 11px; letter-spacing: 0.06em;
+  }
+
+  /* ANIMATIONS */
+  @keyframes fadeUp {
+    from { opacity: 0; transform: translateY(24px); }
+    to { opacity: 1; transform: translateY(0); }
+  }
+  .fade-up { animation: fadeUp 0.7s cubic-bezier(0.16, 1, 0.3, 1) both; }
+  .fade-up-1 { animation-delay: 0.1s; }
+  .fade-up-2 { animation-delay: 0.25s; }
+  .fade-up-3 { animation-delay: 0.4s; }
+  .fade-up-4 { animation-delay: 0.55s; }
+  .fade-up-5 { animation-delay: 0.7s; }
+
+  @media (max-width: 768px) {
+    nav { padding: 1rem 1.5rem; }
+    .nav-links { display: none; }
+    section { padding: 4rem 1.5rem; }
+    .hero { padding: 6rem 1.5rem 3rem; }
+    .hero-stats { gap: 2rem; flex-wrap: wrap; }
+    .about-grid { grid-template-columns: 1fr; }
+    .exp-item { grid-template-columns: 1fr; }
+    .exp-item::before { display: none; }
+    .contact-grid { grid-template-columns: 1fr; }
+    .edu-card { grid-template-columns: 1fr; }
+    .edu-gpa { text-align: left; }
+    footer { flex-direction: column; gap: 0.5rem; text-align: center; }
+  }
+</style>
+</head>
+<body>
+
+<nav>
+  <a class="nav-logo" href="#top">NR<span>.</span></a>
+  <ul class="nav-links">
+    <li><a href="#about">About</a></li>
+    <li><a href="#experience">Experience</a></li>
+    <li><a href="#projects">Projects</a></li>
+    <li><a href="#education">Education</a></li>
+    <li><a href="#contact">Contact</a></li>
+  </ul>
+</nav>
+
+<!-- HERO -->
+<section class="hero" id="top">
+  <div class="hero-grid"></div>
+  <div class="hero-glow"></div>
+  <div class="hero-content">
+    <div class="hero-tag fade-up fade-up-1">Available — SWE &amp; Quant Internships 2027</div>
+    <h1 class="fade-up fade-up-2">
+      Natesan<br><em>Rajesh.</em>
+    </h1>
+    <p class="hero-sub fade-up fade-up-3">
+      CS &amp; Mathematics @ Georgia Tech — building at the intersection of systems engineering and quantitative finance.
+    </p>
+    <div class="hero-cta fade-up fade-up-4">
+      <a href="#experience" class="btn btn-primary">View Work</a>
+      <a href="#contact" class="btn btn-outline">Get in Touch</a>
+    </div>
+    <div class="hero-stats fade-up fade-up-5">
+      <div>
+        <div class="stat-val">4<span>.0</span></div>
+        <div class="stat-label">GPA</div>
+      </div>
+      <div>
+        <div class="stat-val">2<span>+</span></div>
+        <div class="stat-label">Internships</div>
+      </div>
+      <div>
+        <div class="stat-val" style="font-size: 1.1rem; padding-top: 0.4rem;">SWE <span>&</span> Quant</div>
+        <div class="stat-label">Open for Internships</div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ABOUT -->
+<section id="about" style="background: var(--bg2); border-top: 0.5px solid var(--border); border-bottom: 0.5px solid var(--border);">
+  <div style="max-width: 1100px; margin: 0 auto;">
+    <div class="section-label">01 — About</div>
+    <div class="about-grid">
+      <div class="about-text">
+        <p>I'm a <strong>CS &amp; Mathematics student at Georgia Tech</strong> (class of 2028) with a 4.0 GPA, driven by problems that live at the edge of computation and finance. I think in systems, optimize obsessively, and ship real code.</p>
+        <p>My background spans <strong>high-frequency payment systems at Visa</strong>, database engineering at Americold, and active quant research in ML-driven sports analytics. I've also spent years personally trading meme coins — which gave me a visceral education in market microstructure, liquidity, and decision-making under uncertainty that no classroom replicates.</p>
+        <p>I'm pursuing <strong>Fall 2026 and Summer 2027 internships</strong> in quantitative finance and software engineering.</p>
+      </div>
+      <div class="skills-grid">
+        <div class="skill-card">
+          <div class="skill-category">Languages</div>
+          <div class="skill-list">Java · Python · C · C++<br>Go · R · JavaScript<br>Assembly</div>
+        </div>
+        <div class="skill-card">
+          <div class="skill-category">Libraries</div>
+          <div class="skill-list">pandas · NumPy · SciPy<br>statsmodels · Scikit-learn<br>Matplotlib</div>
+        </div>
+        <div class="skill-card">
+          <div class="skill-category">Databases &amp; Cloud</div>
+          <div class="skill-list">SQL · Oracle DB · RDBMS<br>Azure · AWS<br>Linux · Git</div>
+        </div>
+        <div class="skill-card">
+          <div class="skill-category">Focus Areas</div>
+          <div class="skill-list">Quant Finance<br>Distributed Systems<br>ML / Statistical Modeling</div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- EXPERIENCE -->
+<section id="experience">
+  <div style="max-width: 1100px; margin: 0 auto;">
+    <div class="section-label">02 — Experience</div>
+    <div class="exp-list">
+
+      <div class="exp-item">
+        <div class="exp-meta">
+          <div class="exp-period">May – Aug 2026</div>
+          <div class="exp-company">Visa Inc.</div>
+          <div class="exp-loc">Austin, TX</div>
+        </div>
+        <div>
+          <div class="exp-role">Software Engineering Intern</div>
+          <ul class="exp-bullets">
+            <li>Contributed to <strong>Open VisaNet (OVN)</strong>, Visa's cloud-native AI-powered replacement of its legacy authorization platform, processing <strong>200M+ daily transactions</strong> across a modular microservices architecture.</li>
+            <li>Built a backend data extraction pipeline in <strong>GoLang and Java</strong> to parse and traverse 10,000+ message element relationships within VisaNet's core transaction network graph.</li>
+            <li>Designed DSL queries to map dependencies across <strong>50,000+ data elements</strong>, reducing element lookup time by ~40% via optimized graph traversal algorithms.</li>
+            <li>Optimized backend service throughput for high-frequency transaction routing, improving pipeline processing speed by <strong>25%</strong> across a distributed payments codebase.</li>
+          </ul>
+          <div class="exp-tags">
+            <span class="tag">GoLang</span>
+            <span class="tag">Java</span>
+            <span class="tag">Microservices</span>
+            <span class="tag">Graph Traversal</span>
+            <span class="tag">DSL</span>
+            <span class="tag">Distributed Systems</span>
+          </div>
+        </div>
+      </div>
+
+      <div class="exp-item">
+        <div class="exp-meta">
+          <div class="exp-period">May – Aug 2025</div>
+          <div class="exp-company">Americold Logistics</div>
+          <div class="exp-loc">Atlanta, GA</div>
+        </div>
+        <div>
+          <div class="exp-role">Database Administration Intern</div>
+          <ul class="exp-bullets">
+            <li>Optimized DB performance by configuring OEM to monitor tablespace usage, session activity, query response time, and throughput; tuned large queries for optimal execution.</li>
+            <li>Performed <strong>data migration of Claims DB</strong> from Oracle to Document DB; collaborated with business and IT teams for data updates, access setup, and SQL reporting.</li>
+            <li>Developed <strong>Perl scripts</strong> to automate database setup and configuration, reducing manual system checks by <strong>55%</strong>.</li>
+          </ul>
+          <div class="exp-tags">
+            <span class="tag">Oracle DB</span>
+            <span class="tag">Perl</span>
+            <span class="tag">SQL</span>
+            <span class="tag">Data Migration</span>
+            <span class="tag">OEM</span>
+          </div>
+        </div>
+      </div>
+
+      <div class="exp-item">
+        <div class="exp-meta">
+          <div class="exp-period">Ongoing</div>
+          <div class="exp-company">Georgia Tech VIP</div>
+          <div class="exp-loc">Atlanta, GA</div>
+        </div>
+        <div>
+          <div class="exp-role">Undergraduate Researcher — GaN in Space</div>
+          <ul class="exp-bullets">
+            <li>Developed <strong>C++ programs</strong> for circuit modeling and performance analysis of GaN devices under space/nuclear conditions using AWR simulation software.</li>
+            <li>Conducted patent and literature analysis to support research scalability and identify gaps in existing GaN device characterization.</li>
+          </ul>
+          <div class="exp-tags">
+            <span class="tag">C++</span>
+            <span class="tag">AWR</span>
+            <span class="tag">Circuit Modeling</span>
+            <span class="tag">Research</span>
+          </div>
+        </div>
+      </div>
+
+    </div>
+  </div>
+</section>
+
+<!-- PROJECTS -->
+<section id="projects" style="background: var(--bg2); border-top: 0.5px solid var(--border); border-bottom: 0.5px solid var(--border);">
+  <div style="max-width: 1100px; margin: 0 auto;">
+    <div class="section-label">03 — Projects</div>
+    <div class="projects-grid">
+      <div class="project-card" style="grid-column:1 / -1;">
+        <div style="display:flex;justify-content:space-between;align-items:flex-start;flex-wrap:wrap;gap:1rem;margin-bottom:1rem;">
+          <div>
+            <div class="project-num">01 / MACHINE LEARNING &middot; CS 4220 @ GEORGIA TECH &middot; FALL 2025</div>
+            <div class="project-title" style="margin-bottom:0;">PrizePicks Correlation ML</div>
+            <div style="font-size:12px;color:var(--text3);margin-top:4px;">w/ Archange Kra-Bassa</div>
+          </div>
+          <a href="https://github.com/archangebassa/prizepicks-correlation-ml" target="_blank" class="btn btn-outline" style="font-size:11px;padding:8px 16px;white-space:nowrap;">View on GitHub &#x2197;</a>
+        </div>
+        <div class="project-desc" style="margin-bottom:1.5rem;">
+          A full-stack ML framework that quantifies statistical dependencies between player performances to improve accuracy on PrizePicks prop entries. The system computes covariance and correlation matrices between player outcomes (e.g. QB passing yards vs. WR receiving yards), generates smarter multi-leg pick combinations, and runs simulations to maximize expected value under varying correlation thresholds.
+        </div>
+        <div style="display:grid;grid-template-columns:1fr 1fr;gap:1.5rem;margin-bottom:1.5rem;">
+          <div>
+            <div style="font-size:10px;letter-spacing:0.1em;text-transform:uppercase;color:var(--gold);margin-bottom:0.75rem;">Pipeline Architecture</div>
+            <ul class="exp-bullets">
+              <li><strong>ETL Ingestion</strong> &mdash; automated scraping from Pro-Football-Reference and SportsData.io via BeautifulSoup and pandas.read_html</li>
+              <li><strong>Feature Engineering</strong> &mdash; player synergy features, game context, cross-team correlation heatmaps across full seasons</li>
+              <li><strong>Modeling</strong> &mdash; Pearson/Spearman correlation, Ridge Regression, and multivariate regression with ROC and calibration curve evaluation</li>
+              <li><strong>Backtesting</strong> &mdash; parameterized by market and date range; artifacts include CSVs, JSON summaries, and diagnostic plots</li>
+              <li><strong>Frontend</strong> &mdash; React/Flask interactive simulation dashboard for real-time strategy exploration</li>
+            </ul>
+          </div>
+          <div>
+            <div style="font-size:10px;letter-spacing:0.1em;text-transform:uppercase;color:var(--gold);margin-bottom:0.75rem;">Backtest Results &mdash; NFL Passing Yards</div>
+            <div style="display:grid;grid-template-columns:1fr 1fr;gap:0.75rem;margin-bottom:1rem;">
+              <div style="background:var(--bg3);border:0.5px solid var(--border);border-radius:4px;padding:0.75rem;">
+                <div class="metric-val">+2.1%</div><div class="metric-label">ROI</div>
+              </div>
+              <div style="background:var(--bg3);border:0.5px solid var(--border);border-radius:4px;padding:0.75rem;">
+                <div class="metric-val">0.47</div><div class="metric-label">Brier Score</div>
+              </div>
+              <div style="background:var(--bg3);border:0.5px solid var(--border);border-radius:4px;padding:0.75rem;">
+                <div class="metric-val">0.608</div><div class="metric-label">MAE</div>
+              </div>
+              <div style="background:var(--bg3);border:0.5px solid var(--border);border-radius:4px;padding:0.75rem;">
+                <div class="metric-val">0.684</div><div class="metric-label">RMSE</div>
+              </div>
+            </div>
+            <div style="font-size:11px;color:var(--text3);line-height:1.6;">Best provider: PointsBet (Brier: 0.0025). Artifacts include calibration curves, ROC plots, and per-provider Brier score comparisons.</div>
+          </div>
+        </div>
+        <div style="display:flex;align-items:center;gap:1rem;flex-wrap:wrap;padding-top:1.25rem;border-top:0.5px solid var(--border);">
+          <div style="font-size:10px;letter-spacing:0.08em;text-transform:uppercase;color:var(--text3);">Stack</div>
+          <div class="project-stack" style="margin:0;">
+            <span class="stack-pill">Python 3.10+</span>
+            <span class="stack-pill">Scikit-learn</span>
+            <span class="stack-pill">Ridge Regression</span>
+            <span class="stack-pill">pandas</span>
+            <span class="stack-pill">NumPy</span>
+            <span class="stack-pill">Matplotlib / Seaborn</span>
+            <span class="stack-pill">BeautifulSoup</span>
+            <span class="stack-pill">React</span>
+            <span class="stack-pill">Flask</span>
+            <span class="stack-pill">Makefile CI</span>
+          </div>
+        </div>
+
+      <div class="project-card" style="grid-column:1 / -1;">
+        <div style="display:flex;justify-content:space-between;align-items:flex-start;flex-wrap:wrap;gap:1rem;margin-bottom:1rem;">
+          <div>
+            <div class="project-num">02 / FULL-STACK &middot; VISA INC. &middot; SUMMER 2026</div>
+            <div class="project-title" style="margin-bottom:0;">TranView — 3DS Transaction Trace Debugger</div>
+            <div style="font-size:12px;color:var(--text3);margin-top:4px;">Internal developer tooling for Open VisaNet (OVN)</div>
+          </div>
+          <div style="padding:6px 14px;border:0.5px solid rgba(200,169,110,0.3);border-radius:2px;font-size:11px;letter-spacing:0.08em;color:var(--gold);">COMPLETED</div>
+        </div>
+        <div class="project-desc" style="margin-bottom:1.5rem;">
+          Built an internal full-stack developer tool for Visa engineers to debug 3D Secure transaction flows across Open VisaNet's distributed microservices architecture. TranView ingests raw logs from OpenSearch, runs them through a deterministic parsing pipeline, and uses a GenAI agent to classify each subsystem's behavior — rendering the full trace as an interactive "subway map" with live SSE streaming, a filterable log pane, and structured error panels.
+        </div>
+        <div style="display:grid;grid-template-columns:1fr 1fr;gap:1.5rem;margin-bottom:1.5rem;">
+          <div>
+            <div style="font-size:10px;letter-spacing:0.1em;text-transform:uppercase;color:var(--gold);margin-bottom:0.75rem;">What I Built (Backend)</div>
+            <ul class="exp-bullets">
+              <li><strong>Data pipeline</strong> &mdash; OpenSearch <code style="font-size:11px;color:var(--gold);">_msearch</code> adapter with window-widening (24h &rarr; 7d), 50k-line cap, retry + circuit-breaker, and PII masking</li>
+              <li><strong>Parser &amp; validator</strong> &mdash; regex tokenizer, shape-hash dedup, closed-enum + monotonic-timestamp validation</li>
+              <li><strong>GenAI agent</strong> &mdash; structured-output classification of subsystem shapes via Visa-internal LLM client; 3-attempt validate-and-repair loop; graceful degraded mode on outage</li>
+              <li><strong>Multi-app profiles</strong> &mdash; <code style="font-size:11px;color:var(--gold);">profile.yaml</code> + <code style="font-size:11px;color:var(--gold);">event_catalog.yaml</code> loader; pipeline takes profile as input with no hard-coded subsystem strings</li>
+              <li><strong>SSE streaming endpoint</strong> &mdash; <code style="font-size:11px;color:var(--gold);">GET /api/{appId}/trace/{traceKey}/stream</code>; OTel spans + metrics tagged by <code style="font-size:11px;color:var(--gold);">app_id</code></li>
+            </ul>
+          </div>
+          <div>
+            <div style="font-size:10px;letter-spacing:0.1em;text-transform:uppercase;color:var(--gold);margin-bottom:0.75rem;">What I Built (Frontend)</div>
+            <ul class="exp-bullets">
+              <li><strong>Subway map UI</strong> &mdash; interactive stage rail + subsystem chips with hover tooltips, status colors, and <code style="font-size:11px;color:var(--gold);">decision &middot; score &middot; latency</code> captions</li>
+              <li><strong>Detail panel</strong> &mdash; right-rail slide-in with stat grid, LLM summary/reasoning, focus trap + Esc close</li>
+              <li><strong>Log pane</strong> &mdash; virtualized with react-virtuoso; filter by node/level/free-text; event chips link to emitting log lines</li>
+              <li><strong>Live streaming</strong> &mdash; <code style="font-size:11px;color:var(--gold);">useTraceStream</code> hook applies JSON Patches via SSE; opt-in via <code style="font-size:11px;color:var(--gold);">?live=1</code></li>
+              <li><strong>Error states + a11y</strong> &mdash; 6 typed error panels, theme toggle (light/dark/blueprint), ARIA labels, <code style="font-size:11px;color:var(--gold);">prefers-reduced-motion</code></li>
+            </ul>
+          </div>
+        </div>
+        <div style="display:flex;align-items:center;gap:1rem;flex-wrap:wrap;padding-top:1.25rem;border-top:0.5px solid var(--border);">
+          <div style="font-size:10px;letter-spacing:0.08em;text-transform:uppercase;color:var(--text3);">Stack</div>
+          <div class="project-stack" style="margin:0;">
+            <span class="stack-pill">Python</span>
+            <span class="stack-pill">FastAPI</span>
+            <span class="stack-pill">Pydantic</span>
+            <span class="stack-pill">OpenSearch</span>
+            <span class="stack-pill">GenAI (LLM)</span>
+            <span class="stack-pill">React</span>
+            <span class="stack-pill">TypeScript</span>
+            <span class="stack-pill">TanStack Query</span>
+            <span class="stack-pill">Tailwind / shadcn</span>
+            <span class="stack-pill">SSE</span>
+            <span class="stack-pill">OTel</span>
+          </div>
+        </div>
+      </div>
+
+      <div class="project-card">
+        <div class="project-num">03 / RESEARCH</div>
+        <div class="project-title">GaN Circuit Modeling — Space Applications</div>
+        <div class="project-desc">
+          Performance analysis of Gallium Nitride devices under radiation and extreme temperature conditions encountered in space/nuclear environments. Includes C++ simulation framework and patent-landscape research for scalability assessment.
+        </div>
+        <div class="project-metrics">
+          <div>
+            <div class="metric-val">C++</div>
+            <div class="metric-label">Core Language</div>
+          </div>
+          <div>
+            <div class="metric-val">AWR</div>
+            <div class="metric-label">Simulation</div>
+          </div>
+        </div>
+        <div class="project-stack">
+          <span class="stack-pill">C++</span>
+          <span class="stack-pill">AWR</span>
+          <span class="stack-pill">Circuit Analysis</span>
+          <span class="stack-pill">Georgia Tech VIP</span>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- EDUCATION -->
+<section id="education">
+  <div style="max-width: 1100px; margin: 0 auto;">
+    <div class="section-label">04 — Education</div>
+    <div class="edu-card">
+      <div>
+        <div class="edu-school">Georgia Institute of Technology</div>
+        <div class="edu-degree">B.S. Computer Science &amp; Mathematics · Aug 2023 – May 2028 · Atlanta, GA</div>
+        <div style="margin-bottom: 0.75rem; font-size: 11px; letter-spacing: 0.1em; text-transform: uppercase; color: var(--gold);">Relevant Coursework</div>
+        <div class="coursework">
+          <span class="course-tag">Data Structures &amp; Algorithms</span>
+          <span class="course-tag">Design &amp; Analysis of Algorithms</span>
+          <span class="course-tag">Machine Learning</span>
+          <span class="course-tag">Systems &amp; Networks</span>
+          <span class="course-tag">Operating Systems</span>
+          <span class="course-tag">Compilers &amp; Interpreters</span>
+          <span class="course-tag">Embedded Systems</span>
+          <span class="course-tag">Computer Organization &amp; Programming</span>
+          <span class="course-tag">Automata &amp; Complexity</span>
+          <span class="course-tag">Applied Combinatorics</span>
+          <span class="course-tag">Probability Theory</span>
+          <span class="course-tag">Statistics &amp; Applications</span>
+          <span class="course-tag">Linear Algebra</span>
+          <span class="course-tag">Multivariable Calculus</span>
+          <span class="course-tag">Differential Equations</span>
+          <span class="course-tag">Foundations of Math Proof</span>
+          <span class="course-tag">Numerical Analysis I</span>
+          <span class="course-tag">Computing for Data Analysis</span>
+          <span class="course-tag">Microeconomics</span>
+          <span class="course-tag">Engineering Optimization <span style="font-size:9px;color:var(--text3);font-style:italic;">in progress</span></span>
+          <span class="course-tag">Analysis I <span style="font-size:9px;color:var(--text3);font-style:italic;">in progress</span></span>
+          <span class="course-tag">Complex Analysis <span style="font-size:9px;color:var(--text3);font-style:italic;">in progress</span></span>
+          <span class="course-tag">Computational Modeling &amp; Algorithms <span style="font-size:9px;color:var(--text3);font-style:italic;">in progress</span></span>
+        </div>
+      </div>
+      <div>
+        <div class="edu-gpa">4.0</div>
+        <div class="edu-gpa-label">GPA / 4.0</div>
+      </div>
+    </div>
+
+    <div style="margin-top: 3rem;">
+      <div style="margin-bottom: 1rem; font-size: 11px; letter-spacing: 0.1em; text-transform: uppercase; color: var(--text3);">Awards &amp; Recognition</div>
+      <div class="awards-row">
+        <div class="award-card">
+          <div class="award-icon">⭐</div>
+          <div>
+            <div class="award-name">National Merit Scholar</div>
+            <div class="award-org">National Merit Scholarship Corporation</div>
+          </div>
+        </div>
+        <div class="award-card">
+          <div class="award-icon">🏛</div>
+          <div>
+            <div class="award-name">Dean's List</div>
+            <div class="award-org">Georgia Institute of Technology</div>
+          </div>
+        </div>
+        <div class="award-card">
+          <div class="award-icon">🎓</div>
+          <div>
+            <div class="award-name">Magna Cum Laude</div>
+            <div class="award-org">Georgia Institute of Technology</div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- CONTACT -->
+<section id="contact" style="background: var(--bg2); border-top: 0.5px solid var(--border);">
+  <div style="max-width: 1100px; margin: 0 auto;">
+    <div class="section-label">05 — Contact</div>
+    <div class="contact-grid">
+      <div class="contact-text">
+        <h2 style="font-family: 'Instrument Serif', serif; font-size: 2.5rem; line-height: 1.1; margin-bottom: 1.5rem; color: var(--text);">Let's build<br><em style="color: var(--gold);">something fast.</em></h2>
+        <p>I'm actively seeking <strong style="color: var(--text);">Fall 2026 and Summer 2027 internships</strong> in quantitative finance and software engineering — I'd love to connect with anyone working in the space.</p>
+        <p>Also happy to talk systems, trading, probability puzzles, or why meme coin order books are actually fascinating.</p>
+        <a href="mailto:nateraj05@gmail.com" class="btn btn-primary" style="margin-top: 0.5rem;">Send an Email</a>
+      </div>
+      <div class="contact-links">
+        <a href="mailto:nateraj05@gmail.com" class="contact-link">
+          <div>
+            <div class="contact-link-label">Email</div>
+            <div class="contact-link-val">nateraj05@gmail.com</div>
+          </div>
+        </a>
+        <a href="tel:4705339072" class="contact-link">
+          <div>
+            <div class="contact-link-label">Phone</div>
+            <div class="contact-link-val">470-533-9072</div>
+          </div>
+        </a>
+        <a href="https://www.linkedin.com/in/" target="_blank" class="contact-link">
+          <div>
+            <div class="contact-link-label">LinkedIn</div>
+            <div class="contact-link-val">linkedin.com/in/natesanrajesh</div>
+          </div>
+        </a>
+        <div class="contact-link" style="justify-content: space-between;">
+          <div>
+            <div class="contact-link-label">Location</div>
+            <div class="contact-link-val">Atlanta, GA / Johns Creek, GA</div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<footer>
+  <span>© 2026 Natesan Rajesh</span>
+  <span>CS &amp; Mathematics · Georgia Tech · Class of 2028</span>
+</footer>
+
+</body>
+</html>
